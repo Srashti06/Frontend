@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Harvest </title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #7fe162 0%, #fad0c4 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://m.media-amazon.com/images/I/81VL4WceGyL.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #97bf06;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus {
+            border-color: #78c815;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 204, 93, 0.2);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .forgot-password a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #59ce06, #4aa906);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #c8dd08, #b5d407);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(180, 244, 161, 0.15);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #2ecc71;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .signup-link a:hover {
+            color: #27ae60;
+            text-decoration: underline;
+        }
+
+        .fruit-icon {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="fruit-icon">🍓</div>
+        <h2>Prime Harvest Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username/Login ID</label>
+                <input type="text" id="username" name="username"
+                    placeholder="Enter your username"
+                    pattern="^(?=.[!@#$%^&])[a-zA-Z0-9!@#$%^&*]+$"
+                    title="Must contain A-Z, a-z, 0-9 and at least one special character (!@#$%^&*)" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="forgot-password">
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="signup-link">
+            New to PrimeHarvest? <a href="#" id="signup">Create an account</a>
+        </div>
+    </div>
+
+    <script>
+        // Array of fruit emojis to randomly display
+        const fruits = ['🍎', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒', '🍑'];
+
+        // Set random fruit icon on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const fruitIcon = document.querySelector('.fruit-icon');
+            const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+            fruitIcon.textContent = randomFruit;
+        });
+
+        document.getElementById('username').addEventListener('submit', function (e) {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const specialChars = /[!@#$%^&*]/;
+
+            if (!specialChars.test(username)) {
+                e.preventDefault();
+                alert('Username must contain at least one special character (!@#$%^&*)');
+                return false;
+            }
+
+            // Here you would typically send this data to a server for validation
+            console.log('Login attempt with username:', username, 'and password:', password);
+
+            // For demo purposes, we'll just show an alert
+            alert('Login attempt recorded. Welcome to Fruit Market!');
+        });
+
+        document.getElementById('forgotPassword').addEventListener('click', function (e) {
+            e.preventDefault();
+            alert('Password reset link would be sent to your registered email.');
+        });
+
+        document.getElementById('signup').addEventListener('click', function (e) {
+            e.preventDefault();
+            alert('Redirecting to registration page...');
+        });
+
+        if(username === "admin" && password === "123")
+        {
+            windows.location.href = "seven.html";
+        }
+    </script>
+</body>
+
+</html>

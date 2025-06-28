@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeHarvest - Premium Online Fruit Store</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9fff6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #4CAF50;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .logo-text {
+            color: white;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://m.media-amazon.com/images/I/81VL4WceGyL.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #FF9800;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #F57C00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Featured Products */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price span {
+            font-weight: bold;
+            color: #4CAF50;
+            font-size: 20px;
+        }
+        
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #3d8b40;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background-color: #4CAF50;
+            padding: 60px 0;
+            color: white;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .benefit-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-item h3 {
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-img">PH</div>
+                <div class="logo-text">
+                    <h1>PrimeHarvest</h1>
+                    <p>Nature's Sweetest Gifts</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Cart (0)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Fresh Fruits Delivered at Your Doorstep</h2>
+                <p>Enjoy the freshest, highest quality fruits hand-picked from local farms. We deliver nature's goodness straight to your home.</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Our Fresh Selection</h2>
+            <p>Browse our premium selection of organic and locally sourced fruits. Each piece is carefully selected for maximum freshness and flavor.</p>
+        </div>
+        
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://vic-gardens.com/wp-content/uploads/2021/09/organic-1-1024x569.jpg');"></div>
+                <div class="product-info">
+                    <h3>Organic Apples</h3>
+                    <p>Crisp and juicy organic apples from local orchards. Perfect for snacks or baking.</p>
+                    <div class="price">
+                        <span>₹ 120/kg</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT8J1BNjIooiNftkw9VYH6GFtqc-E8lduZRg&s');"></div>
+                <div class="product-info">
+                    <h3>Tropical Mangoes</h3>
+                    <p>Sweet and fragrant mangoes imported from the tropics. Limited seasonal availability.</p>
+                    <div class="price">
+                        <span>₹ 100/kg</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://www.eatright.org/-/media/images/eatright-recipes/eatright-recipe-featured-images/freshstrawberrypierecipe_600x450.jpg?as=0&w=967&rev=fb92a2248c0b4951a3c9bcdcd7c1544e&hash=05FEBC63A204BB334BBED413AC133127');"></div>
+                <div class="product-info">
+                    <h3>Fresh Strawberries</h3>
+                    <p>Plump, red strawberries picked at peak ripeness. Bursting with flavor. Fetched straight from farm</p>
+                    <div class="price">
+                        <span>₹ 80/500g</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFuYW5hc3xlbnwwfHwwfHx8MA%3D%3D');"></div>
+                <div class="product-info">
+                    <h3>Organic Bananas</h3>
+                    <p>Naturally sweet organic bananas. Rich in potassium and perfect for on-the-go.</p>
+                    <div class="price">
+                        <span>₹ 40/kg</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.ctfassets.net/3s5io6mnxfqz/5uQOXudfTpB37sbEJpWc1V/77e55aa3cd15759a287bf94ac3e40d63/mandarin-orange-storage-guide.jpeg?w=1920 ');"></div>
+                <div class="product-info">
+                    <h3>Refreshing Oranges</h3>
+                    <p>Refreshing oranges bursting with zesty vibrancy, tangy sweetness and juiciness in your plate</p>
+                    <div class="price">
+                        <span>₹ 80/kg</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlMmmi24MJD0k-EmpYX436TZi3l1C1pXZC6A&s');"></div>
+                <div class="product-info">
+                    <h3>Fresh Papayas</h3>
+                    <p>Vibrant fruit with a sweet, tropical flavor and smooth, buttery texture. Rich in vitamins A and C.</p>
+                    <div class="price">
+                        <span>₹ 65/kg</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://www.allrecipes.com/thmb/ByeANUjrs6uA2LKFbQIqKEmAEsg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/sweet-limes-521c4dfe28784394a1376c871c36f62c.jpg');"></div>
+                <div class="product-info">
+                    <h3>Sweet Lime(Mosambi)</h3>
+                    <p>Sweet-tangy flavor. Packed with vitamin C, it's great for boosting hydration and immunity.</p>
+                    <div class="price">
+                        <span>₹ 40/500g</span>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Why Choose PrimeHarvest?</h2>
+            </div>
+            
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚚</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your fruits delivered within 24 hours of ordering for maximum freshness.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌱</div>
+                    <h3>Organic Options</h3>
+                    <p>We offer a wide selection of certified organic fruits from trusted growers.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">💯</div>
+                    <h3>Quality Guarantee</h3>
+                    <p>Not satisfied? We'll refund or replace any item that doesn't meet your expectations.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🧑‍🌾</div>
+                    <h3>Local Farmers</h3>
+                    <p>We support local agriculture by sourcing directly from regional farms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>PrimeHarvest</h3>
+                    <p style="color: #bbb; margin-bottom: 15px;">Bringing nature's sweetness to your table.</p>
+                    <p style="color: #bbb;">Customer Service: (+91) 23002-30023</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">All Fruits</a></li>
+                        <li><a href="#">Seasonal Specials</a></li>
+                        <li><a href="#">Gift Baskets</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Information</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Delivery Information</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p style="color: #bbb; margin-bottom: 15px;">Subscribe for weekly deals and fruit tips!</p>
+                    <form>
+                        <input type="email" placeholder="Your email" style="padding: 8px; width: 100%; margin-bottom: 10px; border-radius: 4px; border: none;">
+                        <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 FreshFruit. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
